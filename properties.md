@@ -79,12 +79,11 @@ class User:
         query = 'SELECT * FROM users'# the base query stays the same
         if data:# check if data exists
             query += ' WHERE '#concatenate the ' WHERE ' keyword to our query string
-            # for each key in the data dictionary, create a prepared statement, and then join all of the strings together with an ' AND ' in-between them
-            query += ' AND '.join(f'{key} = %({key})s' for key in data)
+            query += ' AND '.join(f'{key} = %({key})s' for key in data)# for each key in the data dictionary, create a prepared statement, and then join all of the strings together with an ' AND ' in-between them
         query += ';'#concatenate a semicolon to terminate our query string
-        results = connectToMySQL(DB).query_db(query)# the rest of the logic remains the same
+        results = connectToMySQL(DB).query_db(query)
         if results:
-            return [cls(row) for row in results]#another type of generator expression called a list comprehension that generates a list (functionally the same as the previous logic)
+            return [cls(row) for row in results]#another type of generator expression called a list comprehension that generates a list
 ```
 The same trick can be used on our `get_one` method. However, since we always need some sort of data to filter by, if we are getting a single object, it makes the logic even simpler!
 ```py
@@ -92,9 +91,8 @@ class User:
     @classmethod
     def get_one(cls,data):
         query = 'SELECT * FROM users WHERE '# the base query 
-         # for each key in the data dictionary, create a prepared statement, and then join all of the strings together with an ' AND ' in-between them
-        query += ' AND '.join(f'{key} = %({key})s' for key in data)
-        query += ';'#concatenate a semicolon to terminate our query string
+        query += ' AND '.join(f'{key} = %({key})s' for key in data) # for each key in the data dictionary, create a prepared statement, and then join all of the strings together with an ' AND ' in-between them
+        query += ';'# concatenate a semicolon to terminate our query string
         results = connectToMySQL(DB).query_db(query)# the rest of the logic remains the same
         if results:
             return cls(results[0])
@@ -116,3 +114,6 @@ class User:
     def recipes_created(self):
         return recipe_model.Recipe.get_all({'creator_id':self.id})
 ```
+Now our code is super short and dynamic, but there is still something we need to be careful with when using the property decorator. Think back to our original example for why we might want to have association between classes. We wanted to be able to display all of the recipes, alongside the user that created them. The property decorator absolutely still allows us to do that, however because the value of the property gets calculated when the attribute is accessed, if we had 5 recipes all created by the same user, we would end up querying for that same user 5 seperate times in the same request-response cycle. This is definitely not ideal, as that number could potentially be much larger than 5, causing us to do lots of unecessary querying and slowing down our application.
+
+One solution to this problem is implementing temporary *caching*, which will be explained in a future section. For now however, a mix of the property decorator as well as the more traditional joining and parsing should be able to handle all of your association related needs!
