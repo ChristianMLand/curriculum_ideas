@@ -3,3 +3,5 @@
 2. [Types of associations](more_association.md)
 3. [Modeling Many to Many](many_to_many.md)
 4. [Association through Properties](properties.md)
+
+Recorded video demo: https://youtu.be/xLIyyMzol34
