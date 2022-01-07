@@ -5,10 +5,11 @@ There are 4 forms of association that you might encounter
 - One to Many
 - One to One
 - Many to Many (covered in a later section)
+
 It's important to note that just because you have a particular type of relationship in the database, does not necessarily mean you will model the relationship the same when you do association.
 
 # Many to One
-The first type of association, the many to one, is the way we handled it in the last section. This form of association is used when you need to get all rows from a table that has a foreign key to another table. 
+The first type of association, the many to one, is the way we handled it in the [last section](relationships.md). This form of association is used when you need to get all rows from a table that has a foreign key to another table. 
 >Example:  get all recipes and their creators
 
 ```py
@@ -68,7 +69,7 @@ class User:
                     "instructions" : row['instructions'],
                     "under_30" : row['under_30'],
                     "date_made" : row['date_made'],
-                    "creator_id" : row['creator_id']
+                    "creator_id" : row['creator_id'],
                     "created_at" : row['recipes.created_at'],
                     "updated_at" : row['recipes.updated_at']
                 }
@@ -77,7 +78,7 @@ class User:
             return user
 ```
 # One to One
-This is by far the easiest form of association, as there is no for loop required at all here. All we need to do is create one object for each table, and connect them with an attribute! **Note that even though the relationship is a one to many in the database, we are modeling it like a one to one for this particular situation.**
+This is by far the easiest form of association, as there is no loop required at all here. All we need to do is create one object for each table, and connect them with an attribute! **Note that even though the relationship is a one to many in the database, we are modeling it like a one to one for this particular situation.**
 >Example: get one recipe with its creator
 ```py
 from flask_app.models import user_model
