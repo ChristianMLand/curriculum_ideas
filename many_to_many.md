@@ -9,14 +9,6 @@ def __eq__(self,other):
 To break down what this method is doing, first we accept the parameters self and other to the function. Self is the current object, and other is the object we are comparing it to. Since `__eq__` expects us to return a boolean, we return an expression where, if the id's of the two objects are the same, and the types are also the same, we then return `True`, otherwise we return `False`.
 
 With that piece of code to help us out we can then implement the following logic for our method.
-1. Create a list to hold all of our user objects
-2. Loop over the results from the database and create a user object for each row
-3. Check if the user object already exists inside of the list we created
-4. If it doesn't, create an attribute on the user object to hold a list of all the recipes that user has created
-5. Loop over the results again and check if the user's id matches a recipe's creator_id
-6. If they do match, create a recipe object and add it to the user's list of created recipes
-7. Append user object to the all_users list
-8. Return the all_users list
 ```py
 from flask_app.models import recipe_model
 class User:
@@ -55,4 +47,14 @@ class User:
                     all_users.append(user)
                 return all_users
 ```
+Now there's a lot going on here, so let's break it down into pseudo code in order to better analyze it.
+1. Create a list to hold all of our user objects
+2. Loop over the results from the database and create a user object for each row
+3. Check if the user object already exists inside of the list we created
+4. If it doesn't, create an attribute on the user object to hold a list of all the recipes that user has created
+5. Loop over the results again and check if the user's id matches a recipe's creator_id
+6. If they do match, create a recipe object and add it to the user's list of created recipes
+7. Append user object to the all_users list
+8. Return the all_users list
+
 Again, this form of association is not needed very often. Even if you have a many to many in the database, you are more likely to model it like a one to many when it comes to association between classes! Although we were able to make this work, you might notice that this solution has many of the same problems we originally ran into before we started implementing association between classes, and you might be wondering if there is an even better way. Coming [up next](properties.md) we are going to learn about the property decorator and how we can use that to simplify our associations by a lot!
