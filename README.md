@@ -53,7 +53,7 @@ SELECT * FROM recipes
 JOIN users
 ON recipes.creator_id = users.id
 ```
-This this is great, it will give us the recipe data, as well as the data for the user who created them! However, now there's now a new problem we need to address. The way we set up our `connectToMySQL.py` file determines that `SELECT` queries to the database will return us a tuple of dictionaries. One thing you might remember about dictionaries, is that they require all keys to be unique, and if we are wrapping up both recipe data and user data into the same dictionary theres going to be some overlap with keynames. The way that PyMySQL handles this, is the first instance of the column names (whatever the left table in your query is) will have the keys named normally, however any duplicate column names will have their corresponding table name prefixed to the column name as the key instead.
+This is great, it will give us the recipe data, as well as the data for the user who created them! However, now there's now a new problem we need to address. The way we set up our `connectToMySQL.py` file determines that `SELECT` queries to the database will return us a tuple of dictionaries. One thing you might remember about dictionaries, is that they require all keys to be unique, and if we are wrapping up both recipe data and user data into the same dictionary theres going to be some overlap with key-names. The way that PyMySQL handles this, is the first instance of the column names (whatever the left table in your query is) will have the keys named normally, however any duplicate column names will have their corresponding table name prefixed to the column name as the key instead.
 ```py
 from flask_app.models import user_model#import the user_model file
 
