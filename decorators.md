@@ -41,6 +41,7 @@ So why is that even useful? Well imagine we wanted to be able to keep track of h
 def counter(func):
     count = 0# declare a count variable in the decorators function scope
     def wrapper():
+        nonlocal count#tell the wrapper function that count was defined in a different scope
         count += 1#increment the count
         print(f'The function has been called {count} times!')#print the count
         return func()#call the original function and return its result

@@ -57,12 +57,12 @@ def create(cls,data):
 ## Update
 ```py
 @classmethod
-def update(cls,data):
+def update(cls,id,data):
     query = f'UPDATE {cls.table} SET '#pass in the table name
     query += ', '.join(f'{key} = %({key})s' for key in data)#join the column names together seperated by comma
     query += ' WHERE '
     query += 'id = %(id)s;'
-    return connectToMySQL(DB).query_db(query,data)
+    return connectToMySQL(DB).query_db(query,{'id':id,**data})
 ```
 
 ## Delete
