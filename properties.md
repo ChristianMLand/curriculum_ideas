@@ -91,8 +91,8 @@ class User:
     @classmethod
     def get_one(cls,data):
         query = 'SELECT * FROM users WHERE '# the base query 
-        query += ' AND '.join(f'{key} = %({key})s' for key in data) # for each key in the data dictionary, create a prepared statement, and then join all of the strings together with an ' AND ' in-between them
-        query += ';'# concatenate a semicolon to terminate our query string
+        query += 'AND '.join(f'{key} = %({key})s ' for key in data) # for each key in the data dictionary, create a prepared statement, and then join all of the strings together with an ' AND ' in-between them
+        query += 'LIMIT 1;'# concatenate a semicolon to terminate our query string
         results = connectToMySQL(DB).query_db(query)# the rest of the logic remains the same
         if results:
             return cls(results[0])

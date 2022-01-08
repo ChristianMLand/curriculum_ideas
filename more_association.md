@@ -1,3 +1,5 @@
+Recorded video demo: https://youtu.be/xLIyyMzol34
+
 # Different Types of Association
 In the last section we learned how we could pull data from two related tables with a single query, and connect them together with python objects in order to more efficiently retrieve and display the data we want. However, with there being multiple types of SQL relationships (one to one, one to many, many to many), the way that we do that association won't always look exactly the same. 
 There are 4 forms of association that you might encounter
