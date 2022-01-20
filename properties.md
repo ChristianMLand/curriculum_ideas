@@ -71,7 +71,7 @@ class User:
                 all_users.append(cls(row))
         return all_users
 ```
-Now this version definitely accomplishes what we need, however there's a lot going on and it loses a bit of readability. We can actually shorten this logic even further using a combination of the `join` function and a generator expression. For our purposes, we don't really need to worry too much about the specifics of how generator expressions work, we can simply consider them as a way of doing an inline for loop that applies some expression on each iteration. The expression we are using is essentailly creating a string for each key in our data dictionary and then passing in the all of those strings into the join function. The join function then joins all of the strings together on the provided seperator, which in our case is ' AND '. With these improvements we've cut down our code quite a lot, while stil remaining dynamic!
+Now this version definitely accomplishes what we need, however there's a lot going on and it loses a bit of readability. We can actually shorten this logic even further using a combination of the `join` function and a generator expression. 
 ```py
 class User:
     @classmethod
@@ -85,7 +85,9 @@ class User:
         if results:
             return [cls(row) for row in results]#another type of generator expression called a list comprehension that generates a list
 ```
-The same trick can be used on our `get_one` method. However, since we always need some sort of data to filter by, if we are getting a single object, it makes the logic even simpler!
+For our purposes, we don't really need to worry too much about the specifics of how generator expressions work, we can simply consider them as a way of doing an inline for loop that applies some expression on each iteration. The expression we are using is essentailly creating a string for each key in our data dictionary and then passing in the all of those strings into the join function. The join function then joins all of the strings together on the provided seperator, which in our case is ' AND '. With these improvements we've cut down our code quite a lot, while stil remaining dynamic!
+
+The same trick can be used on our `get_one` method. However, since we always need some sort of data to filter by if we are getting a single object, it makes the logic even simpler.
 ```py
 class User:
     @classmethod
@@ -110,10 +112,14 @@ class User:
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
     
+    @classmethod
+    def get_all(cls,data=None):
+        ...
+
     @property
     def recipes_created(self):
         return recipe_model.Recipe.get_all({'creator_id':self.id})
 ```
-Now our code is super short and dynamic, but there is still something we need to be careful with when using the property decorator. Think back to our original example for why we might want to have association between classes. We wanted to be able to display all of the recipes, alongside the user that created them. The property decorator absolutely still allows us to do that, however because the value of the property gets calculated when the attribute is accessed, if we had 5 recipes all created by the same user, we would end up querying for that same user 5 seperate times in the same request-response cycle. This is definitely not ideal, as that number could potentially be much larger than 5, causing us to do lots of unecessary querying and slowing down our application.
+Now our code is super short and dynamic, but there is still something we need to be careful with when using the property decorator. Think back to our original example for why we might want to have association between classes. We wanted to be able to display all of the recipes, alongside the user that created them. The property decorator absolutely still allows us to do that, however because the value of the property gets calculated when the attribute is accessed, if we had 5 recipes all created by the same user,` we would end up querying for that same user 5 seperate times in the same request-response cycle. This is definitely not ideal, as that number could potentially be much larger than 5, causing us to do lots of unecessary querying and slowing down our application.
 
 One solution to this problem is implementing temporary [*caching*](caching.md), which will be explained in a future section. For now however, a mix of the property decorator as well as the more traditional joining and parsing should be able to handle all of your association related needs!
