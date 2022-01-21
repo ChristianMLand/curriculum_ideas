@@ -1,0 +1,5 @@
+- comments
+- docstrings
+- type hints/annotations
+    - variable type annotations
+    - return type annotations

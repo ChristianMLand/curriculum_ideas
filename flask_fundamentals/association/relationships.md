@@ -4,7 +4,7 @@ ______________________________________
 When developing our websites, often times we will find ourselves in a situation where we want to display information from multiple tables in the same location. An example of this could be wanting to display a list of all recipes that have been created, alongside the user who created them. One way that we could accomplish that is to qeury for all the recipes in the data base, as well as all the users in the database. 
 ```py
 class Recipe:
-    #other methods removed for clarity
+    ...
     @classmethod
     def get_all_recipes(cls):
         query = 'SELECT * FROM recipes;'
@@ -15,7 +15,7 @@ class Recipe:
                 recipe = cls(row)#create a recipe object using the row data
                 all_recipes.append(recipe)
         return all_recipes
-
+...
 # same method would be created for the user class as well
 ```
 Then we could have a nested for loop in our jinja template, where we first loop through each recipe, and then loop through each user, checking if the `creator_id` of the recipe matches the `id` of the user, and if so, display the recipe data and the corresponding user data to the page.
@@ -58,7 +58,8 @@ This is great, it will give us the recipe data, as well as the data for the user
 from flask_app.models import user_model#import the user_model file
 
 class Recipe:
-    #other methods removed for clarity
+    ...
+
     @classmethod
     def get_all_recipes(cls):
         query = '''
@@ -88,7 +89,7 @@ class Recipe:
 
 # no longer need to create a corresponding method for the User class
 ```
-With these changes, we now are able to make a single query to the database, and also no longer need to manually filter the users to figure out which user is connected to a given recipe. So now to display this information in our jinja template all we need is a single loop, thus solving all of our original issues!
+With these changes, we now are able to make a single query to the database, and also no longer need to manually filter the users to figure out which user is connected to a given recipe. 
 ```html
 <table>
     <thead>
@@ -109,3 +110,4 @@ With these changes, we now are able to make a single query to the database, and 
     </tbody>
 </table>
 ```
+We can see that now to display this information in our jinja template all we need is a single loop, thus solving all of our original issues!
