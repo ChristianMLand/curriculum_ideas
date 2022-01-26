@@ -1,5 +1,7 @@
+# TODO
+
 # Lambdas
-Previously we learned that we can define functions in python using `def`, which so far has satisfied all our function making needs. However, imagine we wanted to make a function where we could apply some operation to every element in a list. Now if we know that operation is going to be the same every time, we can handle that with a simple for loop, but what if we want to be able to apply any operation we want? We could define a function for each potential operation we might want to apply, and then pass in that function to our map function. 
+Previously we learned that we can define functions in python using `def`, which so far has satisfied all our function making needs. However, imagine we wanted to make a function where we could apply some operation to every element in a list. Now if we know that operation is going to be the same every time, we can handle that with a simple for loop, but what if we want to be able to apply any operation we want? Well, I suppose we could define a function for each potential operation we might want to apply, and then pass in that function to our map function. 
 ```py
 
 def square(n):

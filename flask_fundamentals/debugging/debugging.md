@@ -49,7 +49,7 @@
 > You are attempting to access a key or index of something other than a list,dictionary or tuple
 ### Possible causes:
 - You are using square brackets to access an attribute of object instead of dot notation
-- Your model method returned you either False or none due to your query failing, when you were expecting to recieve a list
+- Your model method returned you either False or None due to your query failing, when you were expecting to recieve a list
 -------------
 ## Unexpected end of template
 ### What's the problem?
@@ -58,8 +58,20 @@
 - You simply forgot to put the `{% endfor %}` or `{% endif %}` in your template
 - You put a space between the words in your closing tag
 - You had a nested for loop or conditional and only closed one of them
-
-## Datatype has no method
+## Datatype has no method _____
+### What's the problem?
+> You are attempting to call a method that hasn't been defined yet for that class
+### Possible causes:
+- You have a typo in the method name either in your invokation, or where it was defined
+- You simply forgot to create that method in your class
+- Your indentation for the method is incorrect, making it unable to be seen by the class
 ------------------
 ## Template cannot be found
+### What's the problem?
+> The HTML file you are attempting to render cannot be found by flask.
+### Possible causes:
+- You have a typo in the filename
+- Your HTML file is not inside the templates folder
+- Your templates folder is in the wrong location
 
+TODO

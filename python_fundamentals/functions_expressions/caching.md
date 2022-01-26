@@ -5,9 +5,9 @@ One way we can deal with situations like that is by implementing caching for our
 
 So how do we actually go about implementing something like this?
 
-TODO
-
 ```py
 
 
 ```
+
+TODO
