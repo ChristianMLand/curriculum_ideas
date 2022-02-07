@@ -73,5 +73,14 @@
 - You have a typo in the filename
 - Your HTML file is not inside the templates folder
 - Your templates folder is in the wrong location
+-----------------
+## Something went wrong: Format requires a mappping
+### What's the problem?
+> The SQL query you made uses a prepared statement, but you didn't provide it the data to format with.
+### Possible causes:
+- You forgot to pass in data to your `query_db` method
+- you passed in something other than a dictionary into data
+- you have a '%' somewhere in your query string other than in a prepared statement, and forgot to remove the data from the execute method in your `mysqlconnection.py` file
+-----------------
 
 TODO
