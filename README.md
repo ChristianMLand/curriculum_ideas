@@ -12,7 +12,7 @@
     - [Caching](/python_fundamentals/functions_expressions/caching.md) WIP
 - ### Object Oriented Programming
     - [General principles](/python_fundamentals/OOP/oop_fundamentals.md) WIP
-    - [Dunder methods](/python_fundamentals/OOP/dunder_methods.md) TODO
+    - [Dunder methods](/python_fundamentals/OOP/dunder_methods.md) WIP
     - [Builtin classes and types](/python_fundamentals/OOP/builtin_classes.md) TODO
 ## Flask Fundamentals
 - ### Debugging
