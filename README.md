@@ -1,7 +1,7 @@
 # Table of contents
 ## Python Fundamentals
 - ### Language basics
-    - [Documenting your code](/python_fundamentals/language_basics/documentation.md) TODO
+    - [Documenting your code](/python_fundamentals/language_basics/documentation.md) WIP
     - [Useful operators](/python_fundamentals/language_basics/operators.md) TODO
     - [Destructuring](/python_fundamentals/language_basics/destructuring.md) TODO
     - [Unit Tests](/python_fundamentals/language_basics/unit_tests.md) TODO
@@ -13,7 +13,7 @@
 - ### Object Oriented Programming
     - [General principles](/python_fundamentals/OOP/oop_fundamentals.md) WIP
     - [Dunder methods](/python_fundamentals/OOP/dunder_methods.md) WIP
-    - [Builtin classes and types](/python_fundamentals/OOP/builtin_classes.md) TODO
+    - [Builtin classes and types](/python_fundamentals/OOP/builtin_classes.md) WIP
 ## Flask Fundamentals
 - ### Debugging
     - [Common Errors](/flask_fundamentals//debugging/debugging.md) WIP

@@ -1,4 +1,12 @@
 # TODO
+- condense explanations and simpler examples
+- naming conventions
+- docstrings
+- type hints/annotations
+    - variable type annotations
+    - return type annotations
+- doctests (maybe move this to unit tests?)
+
 # Documenting Your Code
 So far we've learned a lot about the syntax and structure of python, and how we can start to make some fairly complex projects. However, as our projects get more advanced, and we start to find ourselves working on teams with other developers, it becomes more and more important to make sure that we are properly documenting our code to make it as accessible to our peers as possible. It's important to note that the level of documentation you need, depends on the scale of your project. 
 ## Comments
@@ -50,10 +58,3 @@ def multiply(a, b):
     '''
     return a * b
 ```
-TODO
-- comments
-- naming conventions
-- docstrings
-- type hints/annotations
-    - variable type annotations
-    - return type annotations

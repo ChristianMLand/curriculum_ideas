@@ -2,20 +2,18 @@
 - Simpler code examples
 - better explanations of usage
 - methods
-    - `__repr__, __str__`
-    - `__eq__, __gt__, __lt__`
-    - `__iter__, __next__`
-    - `__getitem___, __setitem__`
-
+    - `__repr__`, `__str__`
+    - `__eq__`, `__gt__, `__lt__`
+    - `__iter__`, `__next__`
+    - `__getitem___`, `__setitem__`
 
 # Dunder/Magic Methods in Python
-
 So far, when writing our classes in Python, the first thing that we always end up creating is our `__init__` method. We've learned that it needs to be named exactly that to work, and that we use it to assign what attributes we want our objects to have. But why does the name of this function matter, and how does Python know to call this method in particular when we invoke the class? Dunder methods in Python are functions that have already been created as a part of all classes, and the Python language utilizes those functions, in order to determine how different things should interact with that class. When we write a dunder method in our classes, we are actually ***overriding*** the original dunder method, and replacing it with our own implementation. Dunder methods are unique in that, they should never be called explicitly, and instead are called internally by the Python language itself. To better illustrate, let's take a look at some examples of dunder methods and what functionality they provide for us.
 
 # Examples:
 ## `__init__`
 - Used for populating and assigning the initial attributes for an instance of the class
-- gets called when invoking the class itself
+- gets called when invoking the class itself (*technically more complicated than that)
 ```py
 class Node:
     def __init__(self, value):
@@ -61,6 +59,7 @@ print(len(arr))# invokes the __len__ method, should print 5
 ```
 ## `__call__`
 - Allows invoking an instance of the class like a function
+- Useful for creating class decorators
 ```py
 class Player:
     def __init__(self, name):
@@ -95,9 +94,21 @@ player1.add_attack(name='punch', power=20, cost=10)
 player1.use_attack(name='punch', target=player2)# calculates the damage and prints the output
 ```
 ## `__str__` and `__repr__`
-- Destermines how instances of the object are represented
-- `__str__` is meant to be readable and useful for the end user
-- `__repr__` is meant to be unambiguous and useful for debugging
+- Determines how instances of the object are represented
+- `__str__` is meant to be readable and useful for the end user (used with print)
+- `__repr__` is meant to be unambiguous (should contain all information required to re-construct the object)
 ```py
-class 
+class User:
+    user_count = 0
+    def __init__(self, name, birthday, id=None):
+        user_count += 1
+        self.id = id or user_count
+        self.name = name
+        self.birthday = birthday
+
+    def __str__(self):
+        return f"<{self.__class__.__name__}: name={self.name}>"
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}(id={self.id}, name='{self.name}', birthday='{self.birthday}')"
 ```

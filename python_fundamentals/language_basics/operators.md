@@ -1,7 +1,12 @@
 # TODO
+- basic operators
+    - and, or
+    - comparison operators
+        - <, >, ==, <=, >=
 - special operators
     - spread operator
         - *args and **kwargs
         - *rest
     - walrus operator
         - :=
+- bitwise operators
