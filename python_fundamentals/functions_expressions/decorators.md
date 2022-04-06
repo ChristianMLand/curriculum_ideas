@@ -1,3 +1,8 @@
+# TODO
+- Decorators that can accept functions with parameters
+- Decorators that can have parameters of their own
+- Class decorators
+
 # Decorators
 At this point we've worked with multiple decorators, `@classmethod`, `@staticmethod`, `@app.route()`, and most recently `@property`. But what exactly are decorators, and how do they work? There are two main types of decorators, function decorators, and class decorators. We will be focusing on function decorators for now, but will touch on class decorators in the future.
 
