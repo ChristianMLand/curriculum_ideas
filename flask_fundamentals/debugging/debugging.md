@@ -16,7 +16,7 @@
 - You forgot to pass a required variable into the route
 - You forgot to import your controller files into your server
 ---------------
-## Key Error "key"
+## Key Error __
 ### What's the problem?
 > You tried to access a dictionary with a key that does not currently exist.
 ### Possible causes:
@@ -37,7 +37,7 @@
 - You have a condition in your route function, and only return in one of the scenarios
 - You are returning something of an invalid type
 -------------
-## Datatype is not iterable
+## ___ is not iterable
 ### What's the problem?
 > You are iterating (looping) over something other than a list,dictionary, or tuple
 ### Possible causes:
